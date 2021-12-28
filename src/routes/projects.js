@@ -1,7 +1,7 @@
 const { readFile, writeFile } = require("../helpers/index");
 
 const userRoutes = (app, fs) => {
-  app.get("/", () => {
+  app.get("/", (_, res) => {
     res.status(200).send("Welcome to projects server");
   });
 
@@ -37,7 +37,7 @@ const userRoutes = (app, fs) => {
   });
 
   // UPDATE
-  app.put("/projects/:id", (req, res) => {
+  app.patch("/projects/:id", (req, res) => {
     readFile(
       fs,
       (data) => {
