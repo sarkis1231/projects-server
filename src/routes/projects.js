@@ -1,4 +1,4 @@
-const { readFile, writeFile } = require("../utils/index");
+const { readFile, writeFile } = require("../helpers/index");
 
 const userRoutes = (app, fs) => {
   // READ
