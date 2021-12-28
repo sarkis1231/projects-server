@@ -15,6 +15,6 @@ const fs = require("fs");
 const routes = require("./src/routes/routes.js")(app, fs);
 
 // finally, launch our server on port 3001.
-const server = app.listen(3001, () => {
+const server = app.listen(process.env.PORT || 80, () => {
   console.log("listening on port %s...", server.address().port);
 });
