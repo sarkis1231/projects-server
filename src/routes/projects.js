@@ -1,6 +1,10 @@
 const { readFile, writeFile } = require("../helpers/index");
 
 const userRoutes = (app, fs) => {
+  app.get("/", () => {
+    res.status(200).send("Welcome to projects server");
+  });
+
   // READ
   app.get("/projects", (_, res) => {
     readFile(
