@@ -6,6 +6,10 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
+app.use((_, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 app.use(express.json());
 // we'll load up node's built in file system helper library here
 // (we'll be using this later to serve our JSON files

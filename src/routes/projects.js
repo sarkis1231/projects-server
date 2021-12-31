@@ -44,14 +44,23 @@ const userRoutes = (app, fs) => {
         // add the new project
         const projectId = req.params["id"];
         const project = data.find(({ id }) => id === projectId);
+        const { title, details, completed } = req.body;
+
         if (!project) {
           res.status(404).send("Wrong project id");
         }
 
-        const { title, details, completed } = req.body;
-        project.title = title;
-        project.details = details;
-        project.completed = completed;
+        if (typeof completed !== "undefined") {
+          project.completed = completed;
+        }
+
+        if (!!details) {
+          project.details = details;
+        }
+
+        if (!!title) {
+          project.title = title;
+        }
 
         writeFile(fs, JSON.stringify(data, null, 2), () => {
           res.status(200).send(`Project id:${projectId} updated`);
