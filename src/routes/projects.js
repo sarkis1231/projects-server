@@ -16,6 +16,30 @@ const userRoutes = (app, fs) => {
     );
   });
 
+  app.get("/projects/:id", (req, res) => {
+    const projectId = req.params["id"];
+
+    readFile(
+      fs,
+      (data) => {
+        const project = data.find(({ id }) => id === projectId);
+        res.status(200).send(project);
+      },
+      true
+    );
+  });
+
+  // READ
+  app.get("/projects", (_, res) => {
+    readFile(
+      fs,
+      (data) => {
+        res.send(data);
+      },
+      true
+    );
+  });
+
   // CREATE
   app.post("/projects", (req, res) => {
     readFile(
